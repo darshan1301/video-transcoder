@@ -1,0 +1,19 @@
+{
+  "name": "transcoder-w",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "tsdown": "0.9.3",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.2"
+  }
+}
