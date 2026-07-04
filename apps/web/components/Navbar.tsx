@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { Film, Menu, X, LogOut } from "lucide-react";
+import { Film, Menu, X, LogOut, Loader2 } from "lucide-react";
 import { Button } from "@repo/ui/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
@@ -12,7 +12,6 @@ export default function Nav() {
   
   const [isOpen, setIsOpen] = useState(false);
   const {data: session, update, status} = useSession()
-  console.log("SESSION" , session)
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
@@ -30,7 +29,11 @@ export default function Nav() {
           <Link href="/dashboard" className="transition hover:text-foreground">Dashboard</Link>
         </nav>}
         <div className="flex items-center gap-2">
-          {status !== "authenticated" ? <>
+          {status === "loading" ? (
+            <div className="h-8 w-8 flex items-center justify-center mr-2">
+              <Loader2 className="h-4.5 w-4.5 animate-spin text-muted-foreground" />
+            </div>
+          ) : status !== "authenticated" ? <>
           <Button variant="ghost" size="sm" asChild className="hidden rounded-full px-4 py-2 sm:inline-flex hover:cursor-pointer border-none">
             <Link href="/signin">Sign in</Link>
           </Button>
@@ -110,7 +113,11 @@ export default function Nav() {
             >
               Dashboard
             </Link>
-            {status !== "authenticated" ? (
+            {status === "loading" ? (
+              <div className="mt-4 flex items-center justify-center py-4 border-t border-border/20 sm:hidden">
+                <Loader2 className="h-4.5 w-4.5 animate-spin text-muted-foreground" />
+              </div>
+            ) : status !== "authenticated" ? (
               <div className="mt-4 flex flex-col gap-2 pt-4 border-t border-border/20 sm:hidden">
                 <Button variant="ghost" size="sm" asChild className="w-full rounded-full border-none justify-center hover:cursor-pointer">
                   <Link href="/signin" onClick={() => setIsOpen(false)}>Sign in</Link>

@@ -28,10 +28,13 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-
+.env
 # turbo
 .turbo
 
 # ui
 dist/
 apps/web/.env
+
+# ignore all the package-lock.json
+package-lock.json
